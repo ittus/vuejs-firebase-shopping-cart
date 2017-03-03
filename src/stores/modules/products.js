@@ -1,5 +1,5 @@
 const state = {
-	isLoading: false,
+	isLoading: true,
 	productList: [
 		// {
 		// 	id: 1,
@@ -40,6 +40,7 @@ const state = {
 const mutations = {
 	'UPDATE_PRODUCT_LIST' (state, productList) {
 		state.productList = productList;
+		state.isLoading = false;
 	}
 }
 
@@ -50,6 +51,9 @@ const actions = {
 const getters = {
 	products: (state) => {
 		return state.productList;
+	},
+	isProductLoading: (state) => {
+		return state.isLoading;
 	}
 }
 
