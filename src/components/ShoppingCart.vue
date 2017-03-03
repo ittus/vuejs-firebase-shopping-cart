@@ -111,6 +111,13 @@
 			checkout() {
 				let vm = this;
 				if (this.$store.getters.isLoggedIn) {
+					if (!this.$store.getters.cartItemList || this.$store.getters.cartItemList.length == 0) {
+						this.addMessage({
+							messageClass: 'warning',
+							message: 'Your cart is empty!'
+						});
+						return;
+					}
 					let { isValid, message } = this.checkValidCart(this.$store.getters.cartItemList, this.$store.getters.products);
 
 					if (isValid) {
