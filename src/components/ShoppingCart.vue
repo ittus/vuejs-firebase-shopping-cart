@@ -56,7 +56,7 @@
 			appCartItem: CartItem
 		},
 		methods: {
-			...mapActions(['saveShoppingCart', 'addMessage']),
+			...mapActions(['saveShoppingCart', 'addMessage', 'saveToTransaction', 'clearCart']),
 			checkValidCart(itemList, prodList) {
 				let isValid = true;
 				let message = "";
@@ -114,7 +114,21 @@
 					let { isValid, message } = this.checkValidCart(this.$store.getters.cartItemList, this.$store.getters.products);
 
 					if (isValid) {
-						
+						this.saveToTransaction({
+							cartItemList: vm.$store.getters.cartItemList,
+							uid: vm.$store.getters.currentUser.uid
+						}).then(()=>{
+							this.addMessage({
+								messageClass: 'success',
+								message: 'Your order has been successfully processed!'
+							});
+							this.saveShoppingCart({
+								cartItemList: [],
+								uid: vm.$store.getters.currentUser.uid
+							});
+							this.clearCart();
+							this.$router.push('/');
+						});
 					} else {
 						this.addMessage({
 							messageClass: 'danger',

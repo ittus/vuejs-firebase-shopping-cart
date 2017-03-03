@@ -10,7 +10,7 @@
                         <p> {{ item.description }} </p>
                     </div>
                     <div class="ratings">
-                        <span>0 left in stock</span>
+                        <span>{{ item.quantity }} left in stock</span>
                         <p class="pull-right">
                             <button 
                                 @click="addItem"

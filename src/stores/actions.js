@@ -56,3 +56,10 @@ export function saveShoppingCart({commit}, {uid, cartItemList}) {
 	// console.log("CART DATA", cartItemList);
 	return ref.child("cart/" + uid).set(cartItemList);
 }
+
+export function saveToTransaction({commit}, {uid, cartItemList}) {
+	let newTransactionKey = ref.child("transactions").push().key;
+	var newTransaction = {}
+	newTransaction['/transactions/' + uid + '/' + newTransactionKey] = cartItemList;
+	return ref.update(newTransaction);
+}
