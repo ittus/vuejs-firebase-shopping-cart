@@ -19,6 +19,15 @@ const router = new VueRouter({
 	routes
 });
 
+// router.beforeEach((to, from, next) => {
+//     if (to.onlyGuest && store.getters.isLoggedIn) {
+//         next('/');
+//     } else {
+//         next();
+//     }
+// });
+
+
 new Vue({
   el: '#app',
   router,

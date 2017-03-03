@@ -44,4 +44,8 @@
   #reset-store-panel {
     position: fixed; bottom: 0px; right: 0px;
   }
+
+  .margin-left-sm {
+    margin-left: 10px;
+  }
 </style>

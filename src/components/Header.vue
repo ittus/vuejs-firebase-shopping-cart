@@ -7,7 +7,7 @@
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <router-link to="/login" tag="li" v-if="!isLoggedInLocal"><a>Login</a></router-link>
-                <li v-if="isLoggedInLocal"><a @click="logoutLocal">Logout {{ userEmail }}</a></li>
+                <li v-if="isLoggedInLocal" class="li-pointer"><a @click="logoutLocal">Logout {{ userEmail }}</a></li>
 		        <router-link to="/register" tag="li" v-if="!isLoggedInLocal"><a>Register</a></router-link>
 		        <li>
                     <router-link to="/cart" class="btn btn-success navbar-btn" tag="button">
@@ -59,5 +59,13 @@
 <style scoped lange="sass">
     .navbar-btn a {
         color: white;
+    }
+
+    .li-pointer {
+        cursor: pointer;
+    }
+
+    .li-pointer:hover {
+        cursor: pointer;
     }
 </style>

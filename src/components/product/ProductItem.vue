@@ -1,13 +1,13 @@
 <template>
-    <div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="col-sm-4 col-lg-4 col-md-4 item" :class="{'list-group-item': displayList}">
         <div class="thumbnail ">
-            <img :src="item.thumbnail_url" alt="" class="grow">
-            <div class="caption">
+            <img :src="item.thumbnail_url" alt="" class="grow thumbnail-image">
+            <div class="caption margin-left-sm">
                 <h4 class="pull-right">${{ item.price }}</h4>
                 <router-link :to="'/product/' + item.id" tag="h4"><a>{{ item.title }}</a></router-link>
                 <p class="truncate">{{ item.description | shortDescription}}</p>
             </div>
-            <div class="ratings">
+            <div class="ratings margin-left-sm">
                <span>{{ item.quantity }} left in stock</span>
                 <p class="pull-right">
                     <button 
@@ -26,7 +26,7 @@
 <script>
     import { mapActions } from 'vuex';
 	export default {
-		props: ['item'],
+		props: ['item', 'displayList'],
         methods: {
             ...mapActions(['updateCart']),
             addItem() {
@@ -51,7 +51,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
     div.thumbnail {
         height: 100%;
     }
@@ -64,7 +64,39 @@
 	    color: #d17581;
 	}
 
-    .grow { transition: all .2s ease-in-out; }
-    .thumbnail:hover .grow { transform: scale(1.03); }
+    .grow { 
+        transition: all .2s ease-in-out; 
+    }
+    .thumbnail:hover .grow { 
+        transform: scale(1.1); 
+    }
 
+    .item.list-group-item {
+        border: none;
+        float: none;
+        width: 100%;
+        background-color: #fff;
+        margin-bottom: 10px;
+    }
+    
+    .thumbnail-image {
+        padding: 15px;
+    }
+    .list-group-item .thumbnail-image {
+        margin-right: 10px;
+        max-height: 150px;
+    }
+
+    .item.list-group-item .thumbnail {
+        margin-bottom: 0px;
+       
+    }
+
+    .item.list-group-item img {
+        float: left;
+    }
+
+    .item.list-group-item:after {
+        clear: both;
+    }
 </style>
