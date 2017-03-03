@@ -23,7 +23,7 @@ const mutations = {
 				messageClass: '',
 				message: ''
 			}
-		}, 7000);
+		}, 5000);
 	},
 	'CLEAR_MESSAGE' (state) {
 		state.messageGroup = {
