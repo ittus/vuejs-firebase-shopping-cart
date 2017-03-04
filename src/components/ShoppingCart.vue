@@ -10,9 +10,11 @@
 					<th style="width:10%"></th>
 				</tr>
 			</thead>
-			<tbody>
+
+			<transition-group name="list-shopping-cart" tag="tbody">
 				<app-cart-item v-for="cartItem in cartItemList" :cartItem="cartItem" :key="cartItem.id"></app-cart-item>
-			</tbody>
+			</transition-group>
+
 			<tfoot>
 				<tr class="visible-xs">
 					<td class="text-center"><strong>Total {{ totalValue }}</strong></td>
@@ -152,3 +154,13 @@
 		}
 	}
 </script>
+
+<style scoped>
+	.list-shopping-cart-leave-active {
+	  transition: all 0.4s;
+	}
+	.list-shopping-cart-leave-to {
+	  opacity: 0;
+	  transform: translateX(50px);
+	}
+</style>
