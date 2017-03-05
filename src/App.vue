@@ -69,4 +69,7 @@
   footer a:hover {
     color: #efefef;
   }
+  .inline-block {
+    display: inline-block;
+  }
 </style>

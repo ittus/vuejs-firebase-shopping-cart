@@ -17,7 +17,7 @@
 	    </div>
 
 		<div class="is-flex" v-if="!loading">
-			<app-product-item v-for="prod in products" :item="prod" :key="prod.id" :displayList="displayList"></app-product-item>
+			<app-product-item v-for="(prod, idx) in products" :item="prod" :key="prod.id" :displayList="displayList"></app-product-item>
 		</div>
 		
 	</div>
