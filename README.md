@@ -12,6 +12,8 @@ npm install
 npm run dev
 ```
 
+You can use data in `data/` folder to import to `products` node in your firebase app.
+
 ## Features
 
 This project implements basic shopping cart features:
