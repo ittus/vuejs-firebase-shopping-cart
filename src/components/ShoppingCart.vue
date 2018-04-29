@@ -68,7 +68,6 @@ export default {
         for (let prodIdx = 0; prodIdx < prodList.length; prodIdx++) {
           if (prodList[prodIdx].id == item.id) {
             if (prodList[prodIdx].quantity < item.quantity) {
-
               message = `Only ${prodList[prodIdx].quantity} ${item.title} available in stock`;
               isValid = false;
               return;

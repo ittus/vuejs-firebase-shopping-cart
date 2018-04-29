@@ -38,13 +38,13 @@
       }
     },
     methods: {
-       ...mapActions(['clearMessage', 'addMessage']),
+       ...mapActions(['clearMessage', 'addMessage', 'registerByEmail']),
       registerByEmailLocal() {
         let data = {
           email: this.email,
           password: this.password
         }
-        this.$store.dispatch('registerByEmail', data).then(() => {
+        this.registerByEmail(data).then(() => {
           this.clearMessage();
           this.$router.push({name: 'mainpage'});
         })

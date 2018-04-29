@@ -41,13 +41,13 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['addMessage', 'clearMessage']),
+    ...mapActions(['addMessage', 'clearMessage', 'loginWithEmail']),
     loginWithEmailLocal() {
       let data = {
         email: this.email,
         password: this.password
       }
-      this.$store.dispatch('loginWithEmail', data).then(() => {
+      this.loginWithEmail(data).then(() => {
         this.clearMessage();
         this.$router.push({
           name: 'mainpage'

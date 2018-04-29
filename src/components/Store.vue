@@ -1,9 +1,9 @@
 <template>
-<div class="container" :class="{loadingItem: loading}">
-  <div class="row text-center" v-if="loading">
-    <grid-loader :loading="loading" :color="loaderColor" :size="loaderSize"></grid-loader>
+<div class="container" :class="{loadingItem: isProductLoading}">
+  <div class="row text-center" v-if="isProductLoading">
+    <grid-loader :loading="isProductLoading" :color="loaderColor" :size="loaderSize"></grid-loader>
   </div>
-  <div class="row action-panel" v-if="!loading">
+  <div v-else class="row action-panel">
     <div class="col-xs-12">
       <div class="btn-group pull-right">
 				<a id="list" class="btn btn-default btn-sm" @click.prevent="changeDisplay(true)">
@@ -16,7 +16,7 @@
     </div>
   </div>
 
-  <div class="is-flex" v-if="!loading">
+  <div class="is-flex" v-if="!isProductLoading">
     <app-product-item v-for="prod in products" :item="prod" :key="prod.id" :displayList="displayList"></app-product-item>
   </div>
 
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import ProductItem from './product/ProductItem.vue';
 import GridLoader from 'vue-spinner/src/GridLoader.vue';
 
@@ -36,12 +37,7 @@ export default {
     }
   },
   computed: {
-    products() {
-      return this.$store.getters.products;
-    },
-    loading() {
-      return this.$store.getters.isProductLoading;
-    }
+    ...mapGetters(['products', 'isProductLoading']),
   },
   components: {
     appProductItem: ProductItem,

@@ -4,26 +4,28 @@
     <Button bsStyle='link' class="btn btn-link close-btn" @click="closeMessageBar">
       <i class="fa fa-times"></i>
     </Button>
-    <div>{{ message }}</div>
+    <div>{{ currentMessage }}</div>
   </div>
 </div>
 </template>
 
 <script>
 import {
-  mapActions
+  mapActions,
+  mapGetters
 } from 'vuex';
 export default {
   computed: {
+    ...mapGetters(['messages']),
     showMessageBar() {
-      return this.$store.getters.messages.message && this.$store.getters.messages.message.length > 0;
+      return this.messages.message && this.messages.message.length > 0;
     },
     messageClass() {
-      let mgClass = this.$store.getters.messages.messageClass;
+      let mgClass = this.messages.messageClass;
       return "col-xs-12 panel panel-" + mgClass + " " + (this.showMessageBar ? "" : "hidden");
     },
-    message() {
-      return this.$store.getters.messages.message;
+    currentMessage() {
+      return this.messages.message;
     }
   },
   methods: {
