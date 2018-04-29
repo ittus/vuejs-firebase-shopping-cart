@@ -12,6 +12,12 @@ npm install
 npm run dev
 ```
 
+Or use `yarn`
+``` bash
+yarn install
+yarn dev
+```
+
 You can use data in `data/` folder to import to `products` node in your firebase app.
 
 ## Features
