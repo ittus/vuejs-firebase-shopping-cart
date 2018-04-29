@@ -39,13 +39,11 @@
 </template>
 
 <script>
-	import { mapActions } from 'vuex';
+	import { mapActions, mapGetters } from 'vuex';
 	import CartItem from './cart/CartItem.vue';
 	export default {
 		computed: {
-			cartItemList() {
-				return this.$store.getters.cartItemList;
-			},
+			...mapGetters(['cartItemList', 'isLoggedIn', 'products', 'currentUser']),
 			totalValue() {
 				let res = 0;
 				this.cartItemList.map((item, idx) => {
@@ -67,8 +65,8 @@
 					for (let prodIdx = 0; prodIdx < prodList.length; prodIdx++) {
 						if (prodList[prodIdx].id == item.id) {
 							if (prodList[prodIdx].quantity < item.quantity) {
-							
-								message = `Only ${prodList[prodIdx].quantity} ${item.title} available in stock`; 
+
+								message = `Only ${prodList[prodIdx].quantity} ${item.title} available in stock`;
 								isValid = false;
 								return;
 							}
@@ -82,14 +80,13 @@
 				}
 			},
 			saveShoppingCartLocal() {
-				let vm = this;
-				if (this.$store.getters.isLoggedIn) {
-					let { isValid, message } = this.checkValidCart(this.$store.getters.cartItemList, this.$store.getters.products);
+				if (this.isLoggedIn) {
+					let { isValid, message } = this.checkValidCart(this.cartItemList, this.products);
 
 					if (isValid) {
 						this.saveShoppingCart({
-							cartItemList: vm.$store.getters.cartItemList,
-							uid: vm.$store.getters.currentUser.uid
+							cartItemList: this.cartItemList,
+							uid: this.currentUser.uid
 						}).then(() => {
 							this.addMessage({
 								messageClass: 'success',
@@ -111,21 +108,20 @@
 				}
 			},
 			checkout() {
-				let vm = this;
-				if (this.$store.getters.isLoggedIn) {
-					if (!this.$store.getters.cartItemList || this.$store.getters.cartItemList.length == 0) {
+				if (this.isLoggedIn) {
+					if (!this.cartItemList || this.cartItemList.length == 0) {
 						this.addMessage({
 							messageClass: 'warning',
 							message: 'Your cart is empty!'
 						});
 						return;
 					}
-					let { isValid, message } = this.checkValidCart(this.$store.getters.cartItemList, this.$store.getters.products);
+					let { isValid, message } = this.checkValidCart(this.cartItemList, this.products);
 
 					if (isValid) {
 						this.saveToTransaction({
-							cartItemList: vm.$store.getters.cartItemList,
-							uid: vm.$store.getters.currentUser.uid
+							cartItemList: this.cartItemList,
+							uid: this.currentUser.uid
 						}).then(()=>{
 							this.addMessage({
 								messageClass: 'success',
@@ -133,7 +129,7 @@
 							});
 							this.saveShoppingCart({
 								cartItemList: [],
-								uid: vm.$store.getters.currentUser.uid
+								uid: this.currentUser.uid
 							});
 							this.clearCart();
 							this.$router.push('/');

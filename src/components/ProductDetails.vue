@@ -14,7 +14,7 @@
                 <div class="ratings">
                     <span>{{ item.quantity }} left in stock</span>
                     <p class="pull-right">
-                        <button 
+                        <button
                             @click="addItem"
                             :disabled="item.quantity === 0"
                             class="btn btn-success" >
@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            
+
 		</div>
 		
 	</div>
@@ -51,8 +51,8 @@
                     });
                     if (filterArr.length > 0) {
                         return filterArr[0];
-                    } 
-                } 
+                    }
+                }
                 return {};
             },
             loading() {
