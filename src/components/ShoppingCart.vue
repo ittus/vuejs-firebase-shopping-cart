@@ -45,11 +45,7 @@
 		computed: {
 			...mapGetters(['cartItemList', 'isLoggedIn', 'products', 'currentUser']),
 			totalValue() {
-				let res = 0;
-				this.cartItemList.map((item, idx) => {
-					res += item.price * item.quantity;
-				});
-				return res;
+				return this.$store.getter.cartValue;
 			}
 		},
 		components: {
