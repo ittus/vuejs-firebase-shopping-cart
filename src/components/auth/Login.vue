@@ -11,7 +11,8 @@
       </div>
 
       <div class="form-group">
-        <button class="btn btn-success" style="width: 100%" @click.prevent="loginWithEmailLocal">
+        <button class="btn btn-success" style="width: 100%" @click.prevent="loginWithEmailLocal" :disabled="isLoading">
+            <i v-if="isLoading" class="fa fa-spinner fa-spin" />
 						Log in
 					</button>
       </div>
@@ -37,12 +38,14 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      isLoading: false
     }
   },
   methods: {
     ...mapActions(['addMessage', 'clearMessage', 'loginWithEmail']),
     loginWithEmailLocal() {
+      this.isLoading = true
       let data = {
         email: this.email,
         password: this.password
@@ -59,7 +62,9 @@ export default {
           autoClose: true
         }
         this.addMessage(message_obj);
-      });
+      }).then(() => {
+        this.isLoading = false
+      })
     }
   }
 }

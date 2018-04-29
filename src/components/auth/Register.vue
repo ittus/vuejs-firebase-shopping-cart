@@ -12,7 +12,10 @@
           v-model="password">
         </div>
         <div class="form-group">
-            <button class="btn btn-success" style="width: 100%" @click.prevent="registerByEmailLocal">Register</button>
+            <button class="btn btn-success" style="width: 100%" @click.prevent="registerByEmailLocal" :disabled="isLoading">
+              <i v-if="isLoading" class="fa fa-spinner fa-spin" />
+              Register
+            </button>
         </div>
         <div class="form-group">
           <div class="row">
@@ -34,12 +37,14 @@
     data() {
       return {
         email: '',
-        password: ''
+        password: '',
+        isLoading: false
       }
     },
     methods: {
        ...mapActions(['clearMessage', 'addMessage', 'registerByEmail']),
       registerByEmailLocal() {
+        this.isLoading = true
         let data = {
           email: this.email,
           password: this.password
@@ -56,7 +61,9 @@
               autoClose: true
             }
            this.addMessage(message_obj);
-        });
+        }).then(() => {
+          this.isLoading = false
+        })
       }
     }
   }
