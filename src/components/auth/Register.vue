@@ -44,7 +44,7 @@
           email: this.email,
           password: this.password
         }
-        this.$store.dispatch('registerByEmail', data).then((user) => {
+        this.$store.dispatch('registerByEmail', data).then(() => {
           this.clearMessage();
           this.$router.push({name: 'mainpage'});
         })

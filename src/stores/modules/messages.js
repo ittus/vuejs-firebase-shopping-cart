@@ -9,7 +9,7 @@ const state = {
 }
 
 const mutations = {
-	'ADD_MESSAGE' (state, {message, messageClass, autoClose}) {
+	'ADD_MESSAGE' (state, {message, messageClass}) {
 		state.messageGroup = {
 			messageClass,
 			message

@@ -3,11 +3,11 @@
     <app-header></app-header>
     <message-component></message-component>
     <div class="container">
-        
+
         <div class="row">
           <div class="col-md-12">
             <router-view></router-view>
-            
+
             <div class="panel panel-warning" id="reset-store-panel">
               <div class="panel-heading">Admin Panel (Testing purpose)</div>
                 <div class="panel-body text-center">
@@ -24,11 +24,11 @@
 <script>
   import { mapActions } from 'vuex';
   import Header from './components/Header.vue';
-  import MessageComponent from './components/common/messageComponent.vue';
+  import MessageComponent from './components/common/MessageComponent.vue';
   export default {
     components: {
       appHeader: Header,
-      messageComponent: MessageComponent
+      MessageComponent
     },
     methods: {
       ...mapActions(['getShoppingCart', 'listenToProductList'])

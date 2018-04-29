@@ -71,7 +71,7 @@ const getters = {
 	},
 	cartValue: (state) => {
 		let res = 0;
-		state.cartItemList.map((item, idx) => {
+		state.cartItemList.map(item => {
 			res += item.price * item.quantity;
 		});
 		return res;

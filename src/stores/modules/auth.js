@@ -1,5 +1,4 @@
-import { firebaseAuth, firebaseListener } from '../../config/firebaseConfig';
-import Vue from 'vue';
+import { firebaseAuth } from '../../config/firebaseConfig';
 
 const state = {
 	isLoggedIn: firebaseAuth().currentUser != null,

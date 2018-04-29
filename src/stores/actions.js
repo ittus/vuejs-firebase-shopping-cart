@@ -1,24 +1,25 @@
-import Vue from 'vue';
 import { ref, firebaseAuth } from '../config/firebaseConfig';
 
-export const updateCart = ({commit}, {item, quantity, isAdd}) => {
-	// TODO: Call service
-	commit('UPDATE_CART', {item, quantity, isAdd});
-	if (isAdd) {
-		let message_obj = {
-		  message: `Add ${item.title} to cart successfully`,
-		  messageClass: "success",
-		  autoClose: true
-		}
-		commit('ADD_MESSAGE', message_obj);
-	}
+export const updateCart = ({
+  commit
+}, {item, quantity, isAdd}) => {
+  // TODO: Call service
+  commit('UPDATE_CART', {item, quantity, isAdd});
+  if (isAdd) {
+    let message_obj = {
+      message: `Add ${item.title} to cart successfully`,
+      messageClass: "success",
+      autoClose: true
+    }
+    commit('ADD_MESSAGE', message_obj);
+  }
 }
 
 export const removeItemInCart = ({commit}, {item}) => {
 	commit('REMOVE_CART_ITEM', {item});
 }
 
-export const registerByEmail = ({commit}, {email, password}) => {
+export const registerByEmail = (_, {email, password}) => {
 	return firebaseAuth().createUserWithEmailAndPassword(email, password);
 }
 
@@ -27,13 +28,12 @@ export const logout = ({commit}) => {
   return firebaseAuth().signOut();
 }
 
-export function loginWithEmail ({commit}, {email, password}) {
+export function loginWithEmail (_, {email, password}) {
   return firebaseAuth().signInWithEmailAndPassword(email, password);
 }
 
 export function listenToProductList({commit}) {
 	return ref.child("products").on('value', (products) => {
-		console.log(products.val());
 		commit('UPDATE_PRODUCT_LIST', products.val());
 	});
 }
@@ -47,17 +47,17 @@ export function getShoppingCart({commit}, {uid, currentCart}) {
 			}
 		});
 	} else {
-		console.log("User has not logged in");
+		// console.log("User has not logged in");
 	}
 }
 
-export function saveShoppingCart({commit}, {uid, cartItemList}) {
+export function saveShoppingCart(_, {uid, cartItemList}) {
 	// console.log("ACTIONS saveShoppingCart");
 	// console.log("CART DATA", cartItemList);
 	return ref.child("cart/" + uid).set(cartItemList);
 }
 
-export function saveToTransaction({commit}, {uid, cartItemList}) {
+export function saveToTransaction(_, {uid, cartItemList}) {
 	let newTransactionKey = ref.child("transactions").push().key;
 	var newTransaction = {}
 	newTransaction['/transactions/' + uid + '/' + newTransactionKey] = cartItemList;
