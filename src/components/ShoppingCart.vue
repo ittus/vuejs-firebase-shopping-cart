@@ -17,7 +17,7 @@
 
     <tfoot>
       <tr class="visible-xs">
-        <td class="text-center"><strong>Total {{ totalValue }}</strong></td>
+        <td class="text-center"><strong>Total {{ cartValue }}</strong></td>
       </tr>
       <tr>
         <td>
@@ -26,7 +26,7 @@
 						</button>
         </td>
         <td colspan="2" class="hidden-xs"></td>
-        <td class="hidden-xs text-center"><strong>Total ${{ totalValue }}</strong></td>
+        <td class="hidden-xs text-center"><strong>Total ${{ cartValue }}</strong></td>
         <td>
           <button class="btn btn-success btn-block" @click="checkout">
 							Checkout <i class="fa fa-angle-right"></i>
@@ -46,14 +46,7 @@ import {
 import CartItem from './cart/CartItem.vue';
 export default {
   computed: {
-    ...mapGetters(['cartItemList', 'isLoggedIn', 'products', 'currentUser']),
-    totalValue() {
-      let res = 0;
-      this.cartItemList.map(item => {
-        res += item.price * item.quantity;
-      });
-      return res;
-    }
+    ...mapGetters(['cartItemList', 'isLoggedIn', 'products', 'currentUser', 'cartValue'])
   },
   components: {
     appCartItem: CartItem
