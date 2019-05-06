@@ -2,14 +2,13 @@
 <div>
     <app-header></app-header>
     <message-component></message-component>
-    <div class="container">
+    <div class="container mt-3">
         <div class="row">
           <div class="col-md-12">
             <router-view></router-view>
-
-            <div class="panel panel-warning" id="reset-store-panel">
-              <div class="panel-heading">Admin Panel (Testing purpose)</div>
-                <div class="panel-body text-center">
+            <div class="card panel-warning" id="reset-store-panel">
+              <div class="card-header">Admin Panel (Testing purpose)</div>
+                <div class="card-body text-center">
                   <button class="btn btn-warning">Reset Store</button>
                 </div>
             </div>

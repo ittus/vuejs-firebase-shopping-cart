@@ -5,18 +5,18 @@
   </div>
   <div v-else class="row action-panel">
     <div class="col-12">
-      <div class="btn-group pull-right">
-				<a id="list" class="btn btn-default btn-sm" @click.prevent="changeDisplay(true)">
-					<span class="glyphicon glyphicon-th-list"></span>List
-				</a>
-				<a id="grid" class="btn btn-default btn-sm" @click.prevent="changeDisplay(false)">
-					<span class="glyphicon glyphicon-th"></span>Grid
-				</a>
+      <div class="btn-group btn-group-sm pull-right">
+				<button id="list" class="btn btn-outline-dark" @click.prevent="changeDisplay(true)">
+          <i class="fa fa-list" aria-hidden="true"></i> List
+				</button>
+				<button id="grid" class="btn btn-outline-dark" @click.prevent="changeDisplay(false)">
+          <i class="fa fa-th" aria-hidden="true"></i> Grid
+				</button>
       </div>
     </div>
   </div>
 
-  <div class="is-flex" v-if="!isProductLoading">
+  <div class="row" v-if="!isProductLoading">
     <app-product-item v-for="prod in products" :item="prod" :key="prod.id" :displayList="displayList"></app-product-item>
   </div>
 
@@ -52,20 +52,10 @@ export default {
 </script>
 
 <style>
-.is-flex {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .loadingItem {
   align-items: center;
   justify-content: center;
   display: flex;
-}
-
-.is-flex>[class*='col-'] {
-  display: flex;
-  flex-direction: column;
 }
 
 .action-panel {

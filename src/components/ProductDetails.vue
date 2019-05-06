@@ -4,8 +4,8 @@
     <div v-if="isProductLoading" class="row text-center">
       <grid-loader :loading="isProductLoading" :color="loaderColor" :size="loaderSize" class="inline-block" />
     </div>
-    <div v-else class="thumbnail">
-      <img class="img-responsive" :src="item.thumbnail_url" alt="">
+    <div v-else class="card">
+      <img class="img-fluid m-auto" :src="item.thumbnail_url" alt="">
       <div class="caption-full">
         <h4 class="pull-right">$ {{ item.price }}</h4>
         <h4> {{ item.title }}</h4>

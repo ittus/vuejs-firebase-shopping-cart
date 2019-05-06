@@ -1,20 +1,25 @@
 <template>
 <div class="col-sm-4 col-lg-4 col-md-4 item" :class="{'list-group-item': displayList}">
-  <div class="thumbnail ">
-    <img :src="item.thumbnail_url" alt="" class="grow thumbnail-image">
-    <div class="caption margin-left-sm">
-      <h4 class="pull-right">${{ item.price }}</h4>
-      <router-link :to="'/product/' + item.id" tag="h4"><a>{{ item.title }}</a></router-link>
-      <p class="truncate">{{ item.description | shortDescription}}</p>
+  <div class="thumbnail card">
+    <div class="img-event">
+      <img :src="item.thumbnail_url" alt="" class="grow thumbnail-image card-img-top p-3">
     </div>
-    <div class="ratings margin-left-sm">
-      <span>{{ item.quantity }} left in stock</span>
-      <p class="pull-right">
-        <button class="btn btn-success" :disabled="item.quantity === 0" @click="addItem">
-                        Add to cart
-                    </button>
-      </p>
-      <div class="clearfix"></div>
+    <div class="card-body">
+      <router-link :to="'/product/' + item.id" tag="h4" class="card-title"><a>{{ item.title }}</a></router-link>
+      <h6 class="card-subtitle mb-2 text-danger">{{ item.quantity }} left in stock</h6>
+
+      <p class="card-text truncate">{{ item.description | shortDescription}}</p>
+
+      <div class="row">
+        <p class="col-6 lead">${{ item.price }}</p>
+        <p class="col-6">
+          <button class="btn btn-success pull-right" :disabled="item.quantity === 0" @click="addItem">
+            Add to cart
+          </button>
+        </p>
+      </div>
+
+
     </div>
   </div>
 </div>
@@ -49,8 +54,8 @@ export default {
 }
 </script>
 
-<style scoped>
-div.thumbnail {
+<style lang="scss" scoped>
+div.card {
   height: 100%;
 }
 
@@ -68,34 +73,42 @@ div.thumbnail {
   transition: all .2s ease-in-out;
 }
 
-.thumbnail:hover .grow {
+.grow:hover {
   transform: scale(1.1);
 }
 
-.item.list-group-item {
-  border: none;
+.list-group-item {
   float: none;
   width: 100%;
   background-color: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0 1rem;
+  border: 0;
+  .thumbnail {
+    display: inline-block;
+    width: 100%;
+  }
+  .img-event {
+    width: 20%;
+    float: left;
+    padding: 0 !important;
+    margin: 0;
+  }
+
+  .card-body {
+    float: left;
+    width: 80%;
+    margin: 0;
+  }
 }
 
-.thumbnail-image {
-  padding: 15px;
-}
-
-.list-group-item .thumbnail-image {
-  margin-right: 10px;
-  max-height: 150px;
-}
-
-.item.list-group-item .thumbnail {
-  margin-bottom: 0px;
-
-}
-
-.item.list-group-item img {
-  float: left;
+.item.list-group-item:before, .item.list-group-item:after
+{
+    display: table;
+    content: " ";
 }
 
 .item.list-group-item:after {

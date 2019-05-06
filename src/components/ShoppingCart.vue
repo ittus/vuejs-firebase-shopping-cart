@@ -16,7 +16,7 @@
     </transition-group>
 
     <tfoot>
-      <tr class="visible-xs">
+      <tr class="d-table-row d-sm-none">
         <td class="text-center"><strong>Total {{ cartValue }}</strong></td>
       </tr>
       <tr>
@@ -25,12 +25,12 @@
 							<i class="fa fa-angle-left"></i>Save and Continue Shopping
 						</button>
         </td>
-        <td colspan="2" class="hidden-xs"></td>
-        <td class="hidden-xs text-center"><strong>Total ${{ cartValue }}</strong></td>
-        <td>
+        <td colspan="2" class="d-none d-sm-table-cell"></td>
+        <td class="d-none d-sm-table-cell text-center"><strong>Total ${{ cartValue }}</strong></td>
+        <td class="px-0">
           <button class="btn btn-success btn-block" @click="checkout">
-							Checkout <i class="fa fa-angle-right"></i>
-						</button>
+							<span>Checkout <i class="fa fa-angle-right d-inline"></i></span>
+					</button>
         </td>
       </tr>
     </tfoot>
