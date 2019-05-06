@@ -4,7 +4,7 @@
     <grid-loader :loading="isProductLoading" :color="loaderColor" :size="loaderSize"></grid-loader>
   </div>
   <div v-else class="row action-panel">
-    <div class="col-xs-12">
+    <div class="col-12">
       <div class="btn-group pull-right">
 				<a id="list" class="btn btn-default btn-sm" @click.prevent="changeDisplay(true)">
 					<span class="glyphicon glyphicon-th-list"></span>List

@@ -1,21 +1,33 @@
 <template>
-<nav class="navbar navbar-inverse" role="navigation">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark" role="navigation">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <router-link to="/" class="navbar-brand">Online Store</router-link>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-      <router-link to="/login" tag="li" v-if="!isLoggedIn"><a>Login</a></router-link>
-      <li v-if="isLoggedIn" class="li-pointer"><a @click="logout">Logout {{ userEmail }}</a></li>
-      <router-link to="/register" tag="li" v-if="!isLoggedIn"><a>Register</a></router-link>
-      <li>
-        <router-link to="/cart" class="btn btn-success navbar-btn" tag="button">
-          Checkout <span class="badge">{{ numItems }} ($ {{ cartValue }})</span>
-        </router-link>
-      </li>
-    </ul>
+    <router-link to="/" class="navbar-brand mr-auto">Online Store</router-link>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+
+      </ul>
+      <ul class="navbar-nav">
+        <router-link to="/login" tag="li" v-if="!isLoggedIn" class="nav-item">
+          <a class="nav-link">Login</a>
+        </router-link>
+        <li v-if="isLoggedIn" class="li-pointer nav-item">
+          <a @click="logout" class="nav-link">Logout {{ userEmail }}</a>
+        </li>
+        <router-link to="/register" tag="li" v-if="!isLoggedIn" class="nav-item">
+          <a class="nav-link">Register</a>
+        </router-link>
+        <li>
+          <router-link to="/cart" class="btn btn-success navbar-btn" tag="button">
+            Checkout <span class="badge badge-light">{{ numItems }} ($ {{ cartValue }})</span>
+          </router-link>
+        </li>
+      </ul>
+    </div>
   </div>
   <!-- /.container -->
 </nav>
