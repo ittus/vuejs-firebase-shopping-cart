@@ -1,7 +1,7 @@
 <template>
 <div class="container">
   <div class="col-md-12">
-    <div v-if="isProductLoading" class="row text-center">
+    <div v-if="isProductLoading" class="text-center">
       <grid-loader :loading="isProductLoading" :color="loaderColor" :size="loaderSize" class="inline-block" />
     </div>
     <div v-else class="card">

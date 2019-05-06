@@ -1,20 +1,30 @@
 <template>
-<div>
-    <app-header></app-header>
-    <message-component></message-component>
-    <div class="container mt-3">
-        <div class="row">
-          <div class="col-md-12">
-            <router-view></router-view>
-            <div class="card panel-warning" id="reset-store-panel">
-              <div class="card-header">Admin Panel (Testing purpose)</div>
-                <div class="card-body text-center">
-                  <button class="btn btn-warning">Reset Store</button>
-                </div>
+<div class="d-flex flex-column sticky-footer-wrapper">
+    <main class="flex-fill">
+      <app-header></app-header>
+      <message-component></message-component>
+      <div class="container mt-3">
+          <div class="row">
+            <div class="col-md-12">
+              <router-view></router-view>
+              <div class="card panel-warning" id="reset-store-panel">
+                <div class="card-header">Admin Panel (Testing purpose)</div>
+                  <div class="card-body text-center">
+                    <button class="btn btn-warning">Reset Store</button>
+                  </div>
+              </div>
             </div>
           </div>
-        </div>
-    </div>
+      </div>
+    </main>
+
+    <footer class="navbar-default navbar-bottom navbar-dark bg-dark">
+      <div class="container-fluid">
+            <p class="text-center nav-bar mb-0">Checkout repository at <a href="https://github.com/ittus/vuejs-firebase-shopping-cart" target="_blank">
+              https://github.com/ittus/vuejs-firebase-shopping-cart
+            </a></p>
+      </div>
+    </footer>
 </div>
 
 </template>
@@ -47,16 +57,16 @@
   .margin-left-sm {
     margin-left: 10px;
   }
-  html, body {
-    height: 100%;
+
+  body, .sticky-footer-wrapper {
+     min-height:100vh;
   }
-  .wrapper {
-    min-height: 100%;
-    margin-bottom: -50px;
-    padding-bottom: 50px;
+
+  .flex-fill {
+     flex:1 1 auto;
   }
   footer {
-    height: 50px;
+    height: 40px;
     color: #666;
     padding: 10px 0 10px 0;
     font-size: 85%;

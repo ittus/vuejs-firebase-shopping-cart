@@ -1,5 +1,5 @@
 <template>
-<div class="col-sm-4 col-lg-4 col-md-4 item" :class="{'list-group-item': displayList}">
+<div class="mb-3 col-sm-6 col-md-4 item" :class="{'list-group-item': displayList}">
   <div class="thumbnail card">
     <div class="img-event">
       <img :src="item.thumbnail_url" alt="" class="grow thumbnail-image card-img-top p-3">
@@ -18,8 +18,6 @@
           </button>
         </p>
       </div>
-
-
     </div>
   </div>
 </div>
