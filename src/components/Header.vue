@@ -3,22 +3,30 @@
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <router-link to="/" class="navbar-brand mr-auto">Online Store</router-link>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTop"
+        aria-controls="navbarTop"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        @click="toggleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" id="navbarTop" :class="{show: isNavOpen}">
       <ul class="navbar-nav mr-auto">
 
       </ul>
-      <ul class="navbar-nav">
-        <router-link to="/login" tag="li" v-if="!isLoggedIn" class="nav-item">
+      <ul class="nav navbar-nav">
+        <router-link to="/login" tag="li" v-if="!isLoggedIn" class="nav-item" active-class="active">
           <a class="nav-link">Login</a>
         </router-link>
         <li v-if="isLoggedIn" class="li-pointer nav-item">
           <a @click="logout" class="nav-link">Logout {{ userEmail }}</a>
         </li>
-        <router-link to="/register" tag="li" v-if="!isLoggedIn" class="nav-item">
+        <router-link to="/register" tag="li" v-if="!isLoggedIn" class="nav-item" active-class="active">
           <a class="nav-link">Register</a>
         </router-link>
         <li>
@@ -38,6 +46,11 @@ import {
   mapActions, mapGetters
 } from 'vuex';
 export default {
+  data() {
+    return {
+      isNavOpen: false
+    }
+  },
   computed: {
     ...mapGetters(['isLoggedIn', 'cartValue', 'currentUser', 'cartItemList']),
     numItems() {
@@ -51,7 +64,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['logout'])
+    ...mapActions(['logout']),
+    toggleNavbar() {
+      this.isNavOpen = !this.isNavOpen
+    }
   }
 }
 </script>

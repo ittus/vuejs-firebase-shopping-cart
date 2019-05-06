@@ -2,7 +2,7 @@
 <div class="container">
   <div class="col-md-12">
     <div v-if="isProductLoading" class="text-center">
-      <grid-loader :loading="isProductLoading" :color="loaderColor" :size="loaderSize" class="inline-block" />
+      <grid-loader :loading="isProductLoading" :color="loaderColor" :size="loaderSize" class="d-inline-block" />
     </div>
     <div v-else class="card">
       <img class="img-fluid m-auto" :src="item.thumbnail_url" alt="">
@@ -21,10 +21,7 @@
         <div class="clearfix"></div>
       </div>
     </div>
-
-
   </div>
-
 </div>
 </template>
 
