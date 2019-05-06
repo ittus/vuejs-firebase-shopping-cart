@@ -9,13 +9,13 @@
 npm install
 
 # serve with hot reload at localhost:8080
-npm run dev
+npm run serve
 ```
 
 Or use `yarn`
 ``` bash
 yarn install
-yarn dev
+yarn serve
 ```
 
 You can use data in `data/` folder to import to `products` node in your firebase app.
@@ -37,6 +37,11 @@ This project implements basic shopping cart features:
 Checkout demo at [Demo](http://vuejs-shopping-cart.coddeine.com/)
 
 ![Alt text](/screenshots/screenshot1.png?raw=true "Optional Title")
+
+
+## Support
+<a href="https://www.buymeacoffee.com/8buMYCOog" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;"></a>
+
 ## Contributing
 
 As I use this for my own projects, I know this might not be the perfect approach
