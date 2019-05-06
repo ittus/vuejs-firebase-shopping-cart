@@ -1,5 +1,5 @@
 <template>
-<div :class="(showMessageBar?'':'hidden') + '  message-bar'">
+<div :class="(showMessageBar?'':'d-none') + '  message-bar'">
   <div :class="messageClass">
     <Button bsStyle='link' class="btn btn-link close-btn" @click="closeMessageBar">
       <i class="fa fa-times"></i>
@@ -22,7 +22,7 @@ export default {
     },
     messageClass() {
       let mgClass = this.messages.messageClass;
-      return "col-xs-12 panel panel-" + mgClass + " " + (this.showMessageBar ? "" : "hidden");
+      return "col-12 panel panel-" + mgClass + " " + (this.showMessageBar ? "" : "hidden");
     },
     currentMessage() {
       return this.messages.message;
