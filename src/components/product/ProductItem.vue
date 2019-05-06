@@ -5,8 +5,8 @@
       <img :src="item.thumbnail_url" alt="" class="grow thumbnail-image card-img-top p-3">
     </div>
     <div class="card-body">
-      <router-link :to="'/product/' + item.id" tag="h4" class="card-title"><a>{{ item.title }}</a></router-link>
-      <h6 class="card-subtitle mb-2 text-danger">{{ item.quantity }} left in stock</h6>
+      <router-link :to="'/product/' + item.id" tag="h5" class="card-title"><a>{{ item.title }}</a></router-link>
+      <h6 class="card-subtitle mb-2 remain">{{ item.quantity }} left in stock</h6>
 
       <p class="card-text truncate">{{ item.description | shortDescription}}</p>
 
@@ -57,13 +57,11 @@ div.card {
   height: 100%;
 }
 
-.favourite-icon {
-  font-size: 25px;
+.card-text {
+  font-size: 0.875rem;
 }
 
-.ratings {
-  padding-right: 10px;
-  padding-left: 10px;
+.remain {
   color: #d17581;
 }
 
