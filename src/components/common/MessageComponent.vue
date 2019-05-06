@@ -22,7 +22,7 @@ export default {
     },
     messageClass() {
       let mgClass = this.messages.messageClass;
-      return "col-xs-12 panel panel-" + mgClass + " " + (this.showMessageBar ? "" : "hidden");
+      return "col-12 panel panel-" + mgClass + " " + (this.showMessageBar ? "" : "hidden");
     },
     currentMessage() {
       return this.messages.message;

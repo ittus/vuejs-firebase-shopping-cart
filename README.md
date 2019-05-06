@@ -30,6 +30,7 @@ This project implements basic shopping cart features:
 ## Technical details
 
 * VueJS [^2.2.1]
+* [Bootstrap 4](https://getbootstrap.com/)
 * Firebase (auth and realtime database)
 
 ## Demo
