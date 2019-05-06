@@ -1,20 +1,20 @@
 module.exports = {
+  root: true,
   env: {
+    node: true,
     browser: true,
-    commonjs: true,
     es6: true
   },
   extends: [
-    // add more generic rulesets here, such as:
-    'eslint:recommended',
-    'plugin:vue/essential'
+    'plugin:vue/essential',
+    'eslint:recommended'
   ],
-  "parserOptions": {
-    // "parser": "babel-eslint",
-    "ecmaVersion": 2017,
-    "sourceType": "module"
-  },
   rules: {
-    "no-console": "off"
+    'no-console': 'off',
+  },
+  parserOptions: {
+    parser: "babel-eslint",
+    sourceType: 'module',
+    allowImportExportEverywhere: true
   }
-}
+};

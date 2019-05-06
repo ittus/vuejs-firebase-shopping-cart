@@ -1,39 +1,50 @@
 {
-  "name": "vuejs-shopping-apps",
-  "description": "A shopping cart with VueJS",
-  "version": "1.0.0",
-  "author": "ittus <vuminhthang.cm@gmail.com>",
+  "name": "vuejs-shopping-card-cli3",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .vue,.js src/**",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "express": "^4.15.0",
-    "firebase": "^3.6.10",
-    "vue": "^2.2.1",
-    "vue-awesome": "^2.1.0",
-    "vue-router": "^2.3.0",
-    "vue-spinner": "^1.0.2",
-    "vuex": "^2.2.1"
+    "core-js": "^2.6.5",
+    "firebase": "^5.11.1",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.6",
+    "vue-spinner": "^1.0.3",
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
-    "babel-core": "^6.0.0",
-    "babel-loader": "^6.0.0",
-    "babel-preset-latest": "^6.0.0",
-    "babel-preset-stage-2": "^6.22.0",
-    "cross-env": "^3.0.0",
-    "css-loader": "^0.25.0",
-    "eslint": "^4.19.1",
-    "eslint-loader": "^2.0.0",
-    "eslint-plugin-vue": "^4.5.0",
-    "file-loader": "^0.9.0",
-    "node-sass": "^4.9.0",
-    "sass-loader": "^5.0.1",
-    "vue-loader": "^11.0.0",
-    "vue-template-compiler": "^2.2.1",
-    "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.2.0"
-  }
+    "@vue/cli-plugin-babel": "^3.7.0",
+    "@vue/cli-plugin-eslint": "^3.7.0",
+    "@vue/cli-service": "^3.7.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "vue-template-compiler": "^2.5.21"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
 }
