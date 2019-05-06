@@ -99,7 +99,25 @@ div.card {
     width: 80%;
     margin: 0;
   }
+
+  @media (max-width: 767.98px) {
+    .img-event {
+      width: 30%;
+      float: left;
+      padding: 0 !important;
+      margin: 0;
+    }
+
+    .card-body {
+      float: left;
+      width: 70%;
+      margin: 0;
+    }
+  }
 }
+
+
+
 
 .item.list-group-item:before, .item.list-group-item:after
 {
