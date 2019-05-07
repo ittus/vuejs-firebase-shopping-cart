@@ -5,7 +5,14 @@
       <grid-loader :loading="isProductLoading" :color="loaderColor" :size="loaderSize" class="d-inline-block" />
     </div>
     <div v-else class="card">
-      <img class="img-fluid m-auto" :src="item.thumbnail_url" alt="">
+      <div class="row">
+        <div class="col-12 col-md-4 offset-md-4">
+          <div class="intrinsic">
+            <img class="img-fluid intrinsic-item" :src="item.thumbnail_url" alt="">
+          </div>
+        </div>
+      </div>
+
       <div class="caption-full">
         <h4 class="pull-right">$ {{ item.price }}</h4>
         <h4> {{ item.title }}</h4>
