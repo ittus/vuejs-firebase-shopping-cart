@@ -92,6 +92,11 @@ div.card {
     float: left;
     padding: 0 !important;
     margin: 0;
+    height: auto;
+  }
+
+  .thumbnail-image {
+    position: static;
   }
 
   .card-body {
