@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "core-js": "^2.6.11",
-    "firebase": "^7.14.0",
+    "core-js": "^3.6.5",
+    "firebase": "^7.14.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
     "vue-spinner": "^1.0.3",
