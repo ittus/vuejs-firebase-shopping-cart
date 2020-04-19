@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "core-js": "^2.6.5",
+    "core-js": "^2.6.11",
     "firebase": "^5.11.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
@@ -23,8 +23,8 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^7.1.0",
+    "node-sass": "^4.13.1",
+    "sass-loader": "^7.3.1",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {
