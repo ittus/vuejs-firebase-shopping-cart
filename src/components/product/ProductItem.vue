@@ -1,32 +1,56 @@
 <template>
-<div class="mb-3 col-sm-6 col-md-4 item" :class="{'list-group-item': displayList}">
-  <div class="thumbnail card">
-    <div class="img-event intrinsic">
-      <img :src="item.thumbnail_url" alt="" class="grow thumbnail-image card-img-top intrinsic-item p-3">
-    </div>
-    <div class="card-body">
-      <router-link :to="'/product/' + item.id" tag="h5" class="card-title"><a>{{ item.title }}</a></router-link>
-      <h6 class="card-subtitle mb-2 remain">{{ item.quantity }} left in stock</h6>
+  <div
+    class="mb-3 col-sm-6 col-md-4 item"
+    :class="{ 'list-group-item': displayList }"
+  >
+    <div class="thumbnail card">
+      <div class="img-event intrinsic">
+        <img
+          :src="item.thumbnail_url"
+          alt=""
+          class="grow thumbnail-image card-img-top intrinsic-item p-3"
+        />
+      </div>
+      <div class="card-body">
+        <router-link :to="'/product/' + item.id" tag="h5" class="card-title"
+          ><a>{{ item.title }}</a></router-link
+        >
 
-      <p class="card-text truncate">{{ item.description | shortDescription}}</p>
+        <span class="badge badge-success" v-if="item.quantity > 3"
+          >{{ item.quantity }} left in stock</span
+        >
+        <span
+          class="badge badge-warning"
+          v-if="item.quantity <= 3 && item.quantity != 0"
+          >{{ item.quantity }} left in stock</span
+        >
+        <span class="badge badge-danger" v-if="item.quantity == 0"
+          >{{ item.quantity }} left in stock</span
+        >
 
-      <div class="row">
-        <p class="col-6 lead">${{ item.price }}</p>
-        <p class="col-6">
-          <button class="btn btn-success pull-right" :disabled="item.quantity === 0" @click="addItem">
-            Add to cart
-          </button>
+        <p class="card-text truncate">
+          {{ item.description | shortDescription }}
         </p>
+
+        <div class="row">
+          <p class="col-6 lead">${{ item.price }}</p>
+          <p class="col-6">
+            <button
+              class="btn btn-success pull-right"
+              :disabled="item.quantity === 0"
+              @click="addItem"
+            >
+              Add to cart <i class="fa fa-shopping-cart"></i>
+            </button>
+          </p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
-import {
-  mapActions
-} from 'vuex';
+import { mapActions } from 'vuex';
 export default {
   props: ['item', 'displayList'],
   methods: {
@@ -35,10 +59,10 @@ export default {
       const order = {
         item: Object.assign({}, this.item),
         quantity: 1,
-        isAdd: true
+        isAdd: true,
       };
       this.updateCart(order);
-    }
+    },
   },
   filters: {
     shortDescription(value) {
@@ -47,9 +71,9 @@ export default {
       } else {
         return value;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -66,7 +90,7 @@ div.card {
 }
 
 .grow {
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .grow:hover {
@@ -121,13 +145,10 @@ div.card {
   }
 }
 
-
-
-
-.item.list-group-item:before, .item.list-group-item:after
-{
-    display: table;
-    content: " ";
+.item.list-group-item:before,
+.item.list-group-item:after {
+  display: table;
+  content: ' ';
 }
 
 .item.list-group-item:after {

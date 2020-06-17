@@ -1,6 +1,10 @@
 <template>
   <div class="container table-responsive">
-    <table id="cart" class="table table-hover table-sm">
+    <div class="alert alert-warning" role="alert" v-if="cartItemList == 0">
+      You have no items in the cart.
+      <router-link to="/"><b>Go back and buy something!</b></router-link>
+    </div>
+    <table id="cart" class="table table-hover table-sm" v-else>
       <thead>
         <tr>
           <th style="width:50%">Product</th>
@@ -49,8 +53,8 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
-import CartItem from './cart/CartItem.vue'
+import { mapActions, mapGetters } from 'vuex';
+import CartItem from './cart/CartItem.vue';
 export default {
   computed: {
     ...mapGetters([
@@ -72,32 +76,32 @@ export default {
       'clearCart',
     ]),
     checkValidCart(itemList, prodList) {
-      let isValid = true
-      let message = ''
+      let isValid = true;
+      let message = '';
 
       itemList.map((item) => {
         for (let prodIdx = 0; prodIdx < prodList.length; prodIdx++) {
           if (prodList[prodIdx].id == item.id) {
             if (prodList[prodIdx].quantity < item.quantity) {
-              message = `Only ${prodList[prodIdx].quantity} ${item.title} available in stock`
-              isValid = false
-              return
+              message = `Only ${prodList[prodIdx].quantity} ${item.title} available in stock`;
+              isValid = false;
+              return;
             }
-            break
+            break;
           }
         }
-      })
+      });
       return {
         isValid,
         message,
-      }
+      };
     },
     saveShoppingCartLocal() {
       if (this.isLoggedIn) {
         let { isValid, message } = this.checkValidCart(
           this.cartItemList,
           this.products
-        )
+        );
 
         if (isValid) {
           this.saveShoppingCart({
@@ -107,20 +111,20 @@ export default {
             this.addMessage({
               messageClass: 'success',
               message: 'Your shopping cart is saved successfully',
-            })
-            this.$router.push('/')
-          })
+            });
+            this.$router.push('/');
+          });
         } else {
           this.addMessage({
             messageClass: 'danger',
             message: message,
-          })
+          });
         }
       } else {
         this.addMessage({
           messageClass: 'warning',
           message: 'Please login to save your cart',
-        })
+        });
       }
     },
     checkout() {
@@ -129,13 +133,13 @@ export default {
           this.addMessage({
             messageClass: 'warning',
             message: 'Your cart is empty!',
-          })
-          return
+          });
+          return;
         }
         let { isValid, message } = this.checkValidCart(
           this.cartItemList,
           this.products
-        )
+        );
 
         if (isValid) {
           this.saveToTransaction({
@@ -145,29 +149,29 @@ export default {
             this.addMessage({
               messageClass: 'success',
               message: 'Your order has been successfully processed!',
-            })
+            });
             this.saveShoppingCart({
               cartItemList: [],
               uid: this.currentUser.uid,
-            })
-            this.clearCart()
-            this.$router.push('/')
-          })
+            });
+            this.clearCart();
+            this.$router.push('/');
+          });
         } else {
           this.addMessage({
             messageClass: 'danger',
             message: message,
-          })
+          });
         }
       } else {
         this.addMessage({
           messageClass: 'warning',
           message: 'Please login to checkout',
-        })
+        });
       }
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
