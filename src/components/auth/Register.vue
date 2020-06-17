@@ -27,7 +27,12 @@
           />
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-success" style="width: 100%" :disabled="isLoading">
+          <button
+            type="submit"
+            class="btn btn-success"
+            style="width: 100%"
+            :disabled="isLoading"
+          >
             <i v-if="isLoading" class="fa fa-spinner fa-spin" />
             Register
           </button>
@@ -55,33 +60,35 @@ export default {
     return {
       email: '',
       password: '',
-      isLoading: false
-    }
+      isLoading: false,
+    };
   },
   methods: {
     ...mapActions(['clearMessage', 'addMessage', 'registerByEmail']),
     onSubmit() {
-      this.isLoading = true
+      this.isLoading = true;
       let data = {
         email: this.email,
-        password: this.password
-      }
-      this.registerByEmail(data).then(() => {
-        this.clearMessage();
-        this.$router.push({ name: 'mainpage' });
-      })
+        password: this.password,
+      };
+      this.registerByEmail(data)
+        .then(() => {
+          this.clearMessage();
+          this.$router.push({ name: 'mainpage' });
+        })
         .catch((error) => {
           // console.log('register error', error);
           let message_obj = {
             message: error.message,
-            messageClass: "danger",
-            autoClose: true
-          }
+            messageClass: 'danger',
+            autoClose: true,
+          };
           this.addMessage(message_obj);
-        }).then(() => {
-          this.isLoading = false
         })
-    }
-  }
-}
+        .then(() => {
+          this.isLoading = false;
+        });
+    },
+  },
+};
 </script>

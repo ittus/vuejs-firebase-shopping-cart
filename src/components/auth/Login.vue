@@ -1,7 +1,12 @@
 <template>
   <div class="row">
     <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-1">
-      <form id="login-form" role="form" style="display: block;" @submit.prevent="onSubmit">
+      <form
+        id="login-form"
+        role="form"
+        style="display: block;"
+        @submit.prevent="onSubmit"
+      >
         <h3 class="text-center">Login</h3>
         <div class="form-group">
           <input
@@ -27,9 +32,15 @@
         </div>
 
         <div class="form-group">
-          <button type="submit" class="btn btn-success" style="width: 100%" :disabled="isLoading">
+          <button
+            type="submit"
+            class="btn btn-success"
+            style="width: 100%"
+            :disabled="isLoading"
+          >
             <i v-if="isLoading" class="fa fa-spinner fa-spin" />
             Log in
+            <i class="fa fa-sign-in"></i>
           </button>
         </div>
         <div class="form-group">
@@ -49,41 +60,42 @@
 </template>
 
 <script>
-import {
-  mapActions
-} from 'vuex';
+import { mapActions } from 'vuex';
 export default {
   data() {
     return {
       email: '',
       password: '',
-      isLoading: false
-    }
+      isLoading: false,
+    };
   },
   methods: {
     ...mapActions(['addMessage', 'clearMessage', 'loginWithEmail']),
     onSubmit() {
-      this.isLoading = true
+      this.isLoading = true;
       let data = {
         email: this.email,
-        password: this.password
-      }
-      this.loginWithEmail(data).then(() => {
-        this.clearMessage();
-        this.$router.push({
-          name: 'mainpage'
+        password: this.password,
+      };
+      this.loginWithEmail(data)
+        .then(() => {
+          this.clearMessage();
+          this.$router.push({
+            name: 'mainpage',
+          });
+        })
+        .catch((error) => {
+          let message_obj = {
+            message: error.message,
+            messageClass: 'danger',
+            autoClose: true,
+          };
+          this.addMessage(message_obj);
+        })
+        .then(() => {
+          this.isLoading = false;
         });
-      }).catch((error) => {
-        let message_obj = {
-          message: error.message,
-          messageClass: "danger",
-          autoClose: true
-        }
-        this.addMessage(message_obj);
-      }).then(() => {
-        this.isLoading = false
-      })
-    }
-  }
-}
+    },
+  },
+};
 </script>
