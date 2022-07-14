@@ -12,7 +12,6 @@
             placeholder="Email Address"
             value
             v-model="email"
-            required
           />
         </div>
         <div class="form-group">
@@ -23,11 +22,22 @@
             class="form-control"
             placeholder="Password"
             v-model="password"
-            required
           />
         </div>
+
+        <div class="alert alert-danger" role="alert" v-if="v$.$error">
+          <span v-for="(errorMessage, i) in errors" :key="i">
+            {{ errorMessage }} <br />
+          </span>
+        </div>
+
         <div class="form-group">
-          <button type="submit" class="btn btn-success" style="width: 100%" :disabled="isLoading">
+          <button
+            type="submit"
+            class="btn btn-success"
+            style="width: 100%"
+            :disabled="isLoading"
+          >
             <i v-if="isLoading" class="fa fa-spinner fa-spin" />
             Register
           </button>
@@ -49,39 +59,65 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
+import useValidate from "@vuelidate/core";
+import { required, email } from "@vuelidate/validators";
+
 export default {
+  setup() {
+    return { v$: useValidate() };
+  },
   data() {
     return {
-      email: '',
-      password: '',
-      isLoading: false
-    }
+      email: "",
+      password: "",
+      isLoading: false,
+      errors: [],
+    };
+  },
+  validations() {
+    return {
+      email: { required, email },
+      password: { required },
+    };
   },
   methods: {
-    ...mapActions(['clearMessage', 'addMessage', 'registerByEmail']),
+    ...mapActions(["clearMessage", "addMessage", "registerByEmail"]),
     onSubmit() {
-      this.isLoading = true
-      let data = {
-        email: this.email,
-        password: this.password
+      this.isLoading = true;
+      this.v$.$validate();
+      if (!this.v$.$error) {
+        let data = {
+          email: this.email,
+          password: this.password,
+        };
+        this.registerByEmail(data)
+          .then(() => {
+            this.clearMessage();
+            this.$router.push({ name: "mainpage" });
+          })
+          .catch((error) => {
+            // console.log('register error', error);
+            let message_obj = {
+              message: error.message,
+              messageClass: "danger",
+              autoClose: true,
+            };
+            this.addMessage(message_obj);
+          })
+          .then(() => {
+            this.isLoading = false;
+          });
+      } else {
+        this.errors = [];
+        for (let i = 0; i < this.v$.$errors.length; i++) {
+          this.errors[
+            i
+          ] = `${this.v$.$errors[i].$property} : ${this.v$.$errors[i].$message}`;
+        }
       }
-      this.registerByEmail(data).then(() => {
-        this.clearMessage();
-        this.$router.push({ name: 'mainpage' });
-      })
-        .catch((error) => {
-          // console.log('register error', error);
-          let message_obj = {
-            message: error.message,
-            messageClass: "danger",
-            autoClose: true
-          }
-          this.addMessage(message_obj);
-        }).then(() => {
-          this.isLoading = false
-        })
-    }
-  }
-}
+      this.isLoading = false;
+    },
+  },
+};
 </script>
